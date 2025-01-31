@@ -18,7 +18,9 @@ namespace Labanov
         private Patient selectedPatient;
         private PatientDB patientDB;
 
+       
         public ObservableCollection<Patient> Patients { get; set; }
+
         public Patient EditPatient
         {
             get => editPatient;
@@ -28,18 +30,28 @@ namespace Labanov
                 OnPropertyChanged();
             }
         }
+        public Patient SelectedPatient
+        {
+            get => selectedPatient;
+            set
+            {
+                selectedPatient = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<string> GenderOptions { get; set; }
         public ICommand AddPatientCommand { get; }
         public ICommand RemovePatientCommand { get; }
         public MainViewModel()
-        {
+        { 
+            AddPatientCommand = new CommandVM(AddPatient, CanAddPatient);
+            RemovePatientCommand = new CommandVM(RemovePatient, CanRemovePatient);
             patientDB = new PatientDB();
             Patients = patientDB.Patients;
             EditPatient = new Patient();
 
-            AddPatientCommand = new CommandVM(AddPatient, CanAddPatient);
-            RemovePatientCommand = new CommandVM(RemovePatient, CanRemovePatient);
+          
 
             GenderOptions = new ObservableCollection<string> {"Мужской", "Женский"};
             
@@ -89,5 +101,7 @@ namespace Labanov
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+     
     }
+
 }

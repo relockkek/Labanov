@@ -31,6 +31,7 @@ namespace Labanov
         {
             return patients.Remove(patient);
         }
+
     }
 }
 

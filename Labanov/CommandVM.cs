@@ -37,11 +37,23 @@ namespace Labanov
 
         public bool CanExecute(object? parameter)
             {
-                return canRun();
+            if ((canRun == null))
+
+            {
+                return canRemovePatient(parameter);
+
+
+            }
+            else
+
+            return canRun() ;
             }
 
             public void Execute(object? parameter)
             {
+            if(action == null)
+                removePatient(parameter);
+            else
                 action();
             }
         }

@@ -29,6 +29,7 @@
             <TextBox Text="{Binding EditPatient.Diagnosis, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
 
             <Button Content="Сохранить" Command="{Binding AddPatientCommand}" Width="100" HorizontalAlignment="Left" Margin="0 0 0 10"/>
+           
             
         </StackPanel>
 
@@ -36,8 +37,9 @@
                   SelectedItem="{Binding SelectedPatient}">
             <DataGrid.ContextMenu>
                 <ContextMenu>
+                    
                     <MenuItem Header="Удалить" Command="{Binding RemovePatientCommand}"
-                              CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                              CommandParameter="{Binding SelectedPatient}"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
